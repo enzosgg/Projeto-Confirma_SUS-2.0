@@ -6,7 +6,7 @@ from core.decorators import login_required_medico
 def plataforma_medico(request):
     medico = get_object_or_404(Medico, id=request.session['medico_id'])
     consultas = Consulta.objects.filter(medico=medico,paciente__isnull=False
-    ).exclude(status='compareceu').exclude(status='naocompareceu').order_by('-data', 'hora')
+    ).exclude(status='compareceu').exclude(status='naocompareceu').order_by('data', 'hora')
     
     return render(request, 'plataforma_medico.html', {'medico': medico,'consultas': consultas})
 
