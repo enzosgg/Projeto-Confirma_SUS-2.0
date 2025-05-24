@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci minha Senha</title>
+    <link rel="stylesheet" href="{% static 'css/senha.css' %}?v=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <header class="cabecalho">
+        <img class="icon" src='{% static "images/coracao2.png" %}' alt="Ícone de coração">
+        <nav class="menu">
+            <a href="{% url 'recepcao' %}"><button class="btnnav">Voltar</button></a>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        {% if status == "1" %}
+            <p class="erro">CPF inválido</p>
+        {% endif %}
+        {% if status == "2" %}
+            <p class="erro">Uma mensagem de recuperação foi enviada para o e-mail atrelado a este CPF!</p>
+        {% endif %}
+        <div class="form-div">
+            <section class="Titulo">
+                <h3>Recuperação de Senha</h3>
+            </section>
+            <form method="POST" action="{% url 'senha' %}" class="tabela"> {% csrf_token %}
+                <div class="formulario">
+                    <label for="cpf">Insira seu CPF:</label> 
+                    <input name="cpf" type="text" id="cpf" placeholder="000.000.000-00" maxlength="14">
+                    <input type="hidden" name="cpf_sem_formatacao" id="cpf_sem_formatacao">
+                    <button class="recuperar">Recuperar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src='{% static "js/cpf.js" %}'></script>
+
+</html>

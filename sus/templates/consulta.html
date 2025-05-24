@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados da Consulta</title>
+    <link rel="stylesheet" href="{% static 'css/consulta.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header class="cabecalho">
+        <img class="icon" src='{% static "images/coracao2.png" %}' alt="Ícone de coração">
+        <nav class="menu">
+            <a class="nome">{{ consulta.paciente.nome }}</a>
+            <a href="{% url 'plataforma' %}"><button class="btnnav">Minhas Consultas</button></a>
+        </nav>
+    </header>
+
+    <main class="conteudo-tabela">
+        <div class="tabela">
+            <section class="Titulo">
+                <h3 id="titulo-consultas">Dados da Consulta</h3>
+            </section>
+
+            <div id="formulario-consulta">
+                <form id="tabela-dados" class="tabela-dados" action="" method="POST">
+                    {% csrf_token %}
+                    <label>Médico</label>
+                    <input readonly value="{{ consulta.medico }}">
+                    <label>Especialidade</label>
+                    <input readonly value="{{ consulta.medico.especialidade }}">
+                    <label>Data</label>
+                    <input readonly value="{{ consulta.data|date:"d/m/Y" }}">
+                    <label>Horário</label>
+                    <input readonly value="{{ consulta.hora|time:'H:i' }}">
+                    <label>Local</label>
+                    <input readonly value="{{ consulta.local }}">
+                    <label>Endereço</label>
+                    <input readonly value="{{ consulta.endereco }}">
+                    <div class="btn">
+                        <button type="button" class="btnconfirmar" id="btnconfirmar" data-id="{{ consulta.id }}">Confirmar Presença</button>
+                        <button type="button" class="btncancelar" id="btncancelar" data-id="{{ consulta.id }}">Cancelar Consulta</button>
+                        <button type="button" class="btnreagendar" id="btnreagendar" 
+                        onclick="window.location.href='{% url 'reagendar' consulta.id %}'">Reagendar Consulta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'js/consulta.js' %}"></script>
+    
+</body>
+</html>

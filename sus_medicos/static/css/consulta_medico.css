@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e2e2e2;
+}
+
+.cabecalho {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+}
+
+.menu {
+    display: flex;
+    gap: 60px;
+}
+
+.icon {
+    max-width: 60px;
+    width: 8%;
+}
+
+.btnnav {
+    border: none;
+    background-color: #e2e2e2;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.conteudo-tabela {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabela {
+    background-color: #f7f5f0;
+    width: 95%;
+    max-width: 800px;
+    height: 100%;
+    max-height: 70vh;
+    min-height: 410px;
+    border-radius: 14px;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.Titulo {
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(90deg, #0cbff5, #0cf5e9); 
+    font-size: 30px;
+    color: #333;   
+}
+
+.tabela-dados {
+    padding: 18px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    display: block;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #0cbff5;
+    border-radius: 10px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+    margin-top: 20px;
+}
+
+.btnnaocompareceu {
+    margin-top: 20px;
+    border: none;
+    width: 100%; 
+    padding: 12px;
+    border-radius: 14px;
+    color: #e2e2e2;
+    font-size: 23px;
+    cursor: pointer;
+    background-color: #d62e2e;
+}
+
+.btncompareceu {
+    margin-top: 20px;
+    border: none;
+    width: 100%; 
+    padding: 12px;
+    border-radius: 14px;
+    color: #e2e2e2;
+    font-size: 23px;
+    cursor: pointer;
+    background-color: rgb(5, 168, 73);
+}
+
+textarea {
+    font-size: 18px;
+    height: 150px;
+    resize: none;
+    width: 100%; 
+    border: 1px solid #0cbff5;
+}

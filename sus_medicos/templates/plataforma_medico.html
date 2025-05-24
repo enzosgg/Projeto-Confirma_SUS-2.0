@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Medico</title>
+    <link rel="stylesheet" href="{% static 'css/plataforma.css' %}?v=1.0">
+</head>
+<body>
+    <header class="cabecalho">
+        <img class="icon" src='{% static "images/coracao2.png" %}' alt="Ícone de coração">
+        <nav class="menu">
+            <a class="nome">{{ medico.nome }}</a>
+            <a href="{% url 'logout_medico' %}"><button class="btnnav">Sair</button></a>
+        </nav>
+    </header>
+
+    <main class="conteudo-tabela">
+        <div class="tabela">
+            <section class="Titulo">
+                <h3>Consultas</h3>
+            </section>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Consultório</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in consultas %}
+                        <tr onclick="window.location.href='{% url 'consulta_medico' i.id %}'" style="cursor: pointer;">
+                            <td>{{ i.paciente.nome }}</td>
+                            <td>{{ i.data|date:"d/m/Y" }}</td>
+                            <td>{{ i.hora|time:"H:i" }}</td>
+                            <td>{{ i.medico.consultorio }}</td>
+                            <td>{{ i.get_status_display }}</td>
+                        </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5">Nenhuma consulta marcada.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>    
+
+    <footer class="rodape">
+        <p>Para checar dados e confirmar comparecimento do paciente, selecione um item da tabela.</p>
+    </footer>
+    
+</body>
+</html>

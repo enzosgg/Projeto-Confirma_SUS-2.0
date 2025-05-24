@@ -1,0 +1,45 @@
+{% load static %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login medico</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}?v=1.0">
+</head>
+<body>
+
+    <header class="cabecalho">
+        <img class="icon" src='{% static "images/coracao2.png" %}' alt="Ícone de coração">
+        <nav class="menu">
+            <a href="{% url 'recepcao' %}"><button class="btnnav">Voltar</button></a>
+        </nav>
+    </header>
+                                
+    <main class="conteudo">
+
+        {% if status == "1" %}
+            <p class="erro">CRM ou Senha inválidos</p>
+        {% endif %}
+
+        <div class="form-div">
+            <section class="Titulo">
+                <h3>Digite CRM e Senha para efetuar Login</h3>
+            </section>
+            <form action="{% url 'login_medico' %}" method="POST"> {% csrf_token %}
+                <div class="formulario">
+                    <label for="crm">CRM:</label> 
+                    <input name="crm" type="text" id="crm" placeholder="Digite seu CRM" maxlength="5">
+                    <label for="senha">Senha:</label>
+                    <input name="senha" type="password" id="senha" placeholder="Digite sua Senha" maxlength="128"> 
+                    <div class="esqueci_senha">
+                        <a href="{% url 'senha' %}">Esqueci minha senha</a>
+                    </div>
+                    <button class="login" type="submit">Login</button>
+                </div>
+            </form>
+            
+        </div>    
+    </main>   
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcar Consulta</title>
+    <link rel="stylesheet" href="{% static 'css/marcar_consulta.css' %}?v=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header class="cabecalho">
+        <img class="icon" src='{% static "images/coracao2.png" %}' alt="Ícone de coração">
+        <nav class="menu">
+            <a class="nome">{{ paciente.nome }}</a>
+            <a href="{% url 'plataforma' %}"><button class="btnnav">Minhas Consultas</button></a>
+        </nav>
+    </header>
+
+    <main class="conteudo-tabela">
+        <div class="tabela">
+            <section class="Titulo">
+                <h3>Marcar Consulta</h3>
+                <form method="get" action="{% url 'marcar_consulta' %}">
+                    <label for="especialidade">Filtrar por especialidade:</label>
+                    <select class="teste" name="especialidade" id="especialidade">
+                        <option value="">Todas</option>
+                        {% for esp in especialidades %}
+                            <option value="{{ esp }}" {% if esp == especialidade_selecionada %}selected{% endif %}>{{ esp }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btnfiltrar" type="submit">Filtrar</button>
+                </form>
+            </section>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Médico</th>
+                            <th>Especialidade</th>
+                            <th>Local</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for consulta in consultas_disponiveis %}
+                        <tr data-consulta-id="{{ consulta.id }}" style="cursor: pointer;">
+                            <td>{{ consulta.data|date:"d/m/Y" }}</td>
+                            <td>{{ consulta.hora|time:"H:i" }}</td>
+                            <td>{{ consulta.medico.nome }}</td>
+                            <td>{{ consulta.medico.especialidade }}</td>
+                            <td>{{ consulta.local }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr class="nao-clicavel">
+                            <td colspan="5">Nenhuma consulta disponível.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <form id="form-marcar-consulta" method="post" action="" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" id="consulta-id" value="{{ consulta.id }}">
+    </form>
+
+    <footer class="rodape">
+        <p>Clique em uma consulta para marcá-la.</p>
+    </footer>
+
+    <script src='{% static "js/marcar_consulta.js" %}'></script>
+
+</body>
+</html>

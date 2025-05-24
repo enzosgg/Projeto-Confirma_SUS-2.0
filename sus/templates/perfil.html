@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}?v=1.0">
+</head>
+<body>
+    <header class="cabecalho">
+        <img class="icon" src='{% static "images/coracao2.png" %}' alt="Ícone de coração">
+        <nav class="menu">
+            <a class="nome">{{ paciente.nome }}</a>
+            <a href="{% url 'plataforma' %}"><button class="consultas">Minhas Consultas</button></a>
+        </nav>
+    </header>
+
+    <main class="conteudo-tabela">
+        <div class="tabela" id="dados">
+            <section class="Titulo">
+                <h3>Dados do Perfil</h3>
+            </section>
+            <form id="tabela-dados" class="tabela-dados" method="post" action="{% url 'perfil' %}"> {% csrf_token %}
+                <div class="formulario">
+                    <label for="telefone">Número de telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" value="{{ paciente.telefone }}" maxlength="11">
+                </div>
+                <div class="formulario">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ paciente.email }}" maxlength="128">
+                    <button class="confirmacao" type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e2e2e2;
+}
+
+.cabecalho{
+    padding-bottom: 100px;
+    padding-top: 20px;
+    padding-left: 20px;
+    min-height: 20vh;
+}
+
+.icon {
+    max-width: 150px;
+    width: 87%;
+    min-width: 60px;
+}
+
+.Titulo {
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(90deg, #0cbff5, #0cf5e9); 
+    font-size: 30px;
+    color: #333;  
+    max-width: 800px;
+    width: 100%;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    width: 95%;
+    max-width: 800px;
+}
+.conteudo-tabela {
+    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tabela {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height:300px;
+    height: 100%;
+    min-height:200px;
+    width: 95%;
+    max-width: 800px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    background-color: #f7f5f0;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+button {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
+    background-color: #0cbff5;
+    border: none;
+    border-radius: 14px;
+    color: #e2e2e2;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0cf5e9;
+    transition: 1s;
+    color: #333;
+}
